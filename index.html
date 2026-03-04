@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon x Respaid | Recovery Intelligence Report</title>
+<meta property="og:title" content="Amazon x Respaid — Recovery Intelligence Report">
+<meta property="og:description" content="$63.5K recovered from 30 end-of-lifecycle accounts in 20 days. AI-powered debt recovery by Respaid (YC S23).">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://backend.widr.app/amazon">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Amazon x Respaid — Recovery Intelligence Report">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234E3267'/%3E%3Cpath d='M10 7h7.5c3 0 5.5 2.2 5.5 5.2 0 2.2-1.4 4-3.4 4.8l4.4 8h-4.5l-3.8-7H14v7h-4V7zm4 7.5h3.5c1.2 0 2.2-.9 2.2-2.1 0-1.2-1-2.2-2.2-2.1H14v4.2z' fill='white'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#F6F3EF;--surface:#ffffff;--surface2:#f0ece7;--surface3:#e4dfd9;--accent:#4E3267;--accent2:#6B4D8A;--blue:#3B82F6;--purple:#8B6BB3;--orange:#D97706;--red:#DC2626;--green:#059669;--red-muted:#fef2f2;--purple-muted:#f3eef8;--green-muted:#ecfdf5;--text:#121826;--text2:#6B7280;--text3:#9CA3AF;--radius:12px;--radius-sm:8px;--accent-bg:rgba(78,50,103,.05);--accent-bg2:rgba(78,50,103,.1);--accent-border:rgba(78,50,103,.15);--blue-bg:rgba(59,130,246,.06);--blue-border:rgba(59,130,246,.1);--red-bg:rgba(220,38,38,.06);--red-border:rgba(220,38,38,.1);--orange-bg:rgba(217,119,6,.06);--orange-border:rgba(217,119,6,.1);--green-bg:rgba(5,150,105,.06);--green-border:rgba(5,150,105,.1)}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory;overflow-y:scroll;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.stat-num{font-family:'Plus Jakarta Sans',sans-serif;font-weight:300}
+
+section.dark-section{background:#121826;--surface:#1e2536;--surface2:#2a2f42;--surface3:#353b50;--text:#f0f0f5;--text2:#a0a0b5;--text3:#707088;--accent:#A78BFA;--accent2:#C4B5FD;--purple:#C4B5FD;--accent-bg:rgba(167,139,250,.08);--accent-bg2:rgba(167,139,250,.12);--accent-border:rgba(167,139,250,.2);--blue-bg:rgba(96,165,250,.08);--blue-border:rgba(96,165,250,.15);--red-bg:rgba(248,113,113,.08);--red-border:rgba(248,113,113,.15);--orange-bg:rgba(251,191,36,.08);--orange-border:rgba(251,191,36,.15);--green-bg:rgba(52,211,153,.08);--green-border:rgba(52,211,153,.15);--purple-muted:rgba(167,139,250,.1);--red-muted:rgba(248,113,113,.08);--green-muted:rgba(52,211,153,.08)}
+section.dark-section .card{background:var(--surface);border-color:var(--surface3)}
+
+.topbar{position:fixed;top:0;left:0;right:0;height:56px;background:rgba(246,243,239,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(18,24,38,.06);z-index:100;display:flex;align-items:center;padding:0 32px}
+.topbar-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.topbar-logo svg{width:28px;height:28px}
+.topbar-label{font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;font-weight:600;color:#6B7280;letter-spacing:.5px}
+section{min-height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px 24px;position:relative}
+.container{max-width:960px;width:100%;margin:0 auto}
+
+#gate{position:fixed;inset:0;background:#F6F3EF;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity .5s,visibility .5s}
+#gate.hidden{opacity:0;visibility:hidden;pointer-events:none}
+#gate h2{font-size:1.4rem;font-weight:300;color:#6B7280;letter-spacing:.5px}
+#gate input{background:#ffffff;border:1px solid #e4dfd9;color:#121826;padding:14px 24px;border-radius:999px;font-size:1rem;width:280px;text-align:center;outline:none;transition:border-color .3s}
+#gate input:focus{border-color:#4E3267}
+#gate .gate-logo{font-size:1rem;color:#9CA3AF;font-weight:400;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+#gate .gate-err{color:#DC2626;font-size:.85rem;min-height:20px}
+
+.nav-dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:12px}
+.nav-dots a{width:10px;height:10px;border-radius:50%;background:#d1cdc7;display:block;transition:all .3s}
+.nav-dots a.active{background:#4E3267;box-shadow:0 0 8px rgba(78,50,103,.3)}
+
+.section-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-bg);color:var(--accent);padding:6px 14px;border-radius:20px;font-size:.8rem;font-weight:600;border:1px solid var(--accent-border)}
+.badge-blue{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-border)}
+.badge-orange{background:var(--orange-bg);color:var(--orange);border-color:var(--orange-border)}
+.badge-green{background:var(--green-bg);color:var(--green);border-color:var(--green-border)}
+
+.card{background:var(--surface);border:1px solid var(--surface3);border-radius:var(--radius);padding:28px;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card-accent-top{position:absolute;top:0;left:0;right:0;height:3px}
+.card-grid{display:grid;gap:16px}
+.card-grid-3{grid-template-columns:repeat(3,1fr)}
+.card-grid-2{grid-template-columns:repeat(2,1fr)}
+.card-grid-4{grid-template-columns:repeat(4,1fr)}
+
+.stat-num{font-weight:800;line-height:1}
+.stat-mega{font-size:clamp(3.5rem,8vw,6rem);color:var(--accent)}
+.stat-big{font-size:clamp(2rem,5vw,3.2rem);color:var(--text)}
+.stat-med{font-size:clamp(1.5rem,3vw,2rem);color:var(--text)}
+.stat-label{font-size:.85rem;color:var(--text2);margin-top:4px;font-weight:400}
+.stat-sub{font-size:1.1rem;color:var(--text2);font-weight:300;margin-top:8px}
+
+.bar-track{background:var(--surface2);border-radius:8px;height:48px;position:relative;overflow:hidden;margin-bottom:12px}
+.bar-fill{height:100%;border-radius:8px;display:flex;align-items:center;padding:0 16px;font-weight:700;font-size:1rem;transition:width 1.5s cubic-bezier(.25,.46,.45,.94);width:0}
+.bar-label{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:.85rem;color:var(--text3)}
+
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.compare-card{border-radius:var(--radius);padding:32px;text-align:center}
+.compare-green{background:var(--accent-bg);border:1px solid var(--accent-border)}
+.compare-red{background:var(--red-bg);border:1px solid var(--red-border)}
+.compare-row{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:.85rem;text-align:left}
+.compare-icon{width:20px;flex-shrink:0;text-align:center}
+
+.tl-grid{display:grid;grid-template-columns:auto 1fr 1fr;gap:0;max-width:740px;margin:0 auto;text-align:left}
+.tl-header{padding:12px 16px;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--surface3)}
+.tl-cell{padding:14px 16px;border-bottom:1px solid var(--surface2);font-size:.85rem;display:flex;align-items:center;gap:8px}
+.tl-day{color:var(--text3);font-weight:600;font-size:.75rem}
+.tl-slow{color:var(--text3)}
+.tl-fast{color:var(--accent);font-weight:500}
+
+.loop-track{display:flex;align-items:center;gap:0;width:100%;justify-content:center;flex-wrap:wrap}
+.loop-node{background:var(--surface);border:2px solid var(--surface3);border-radius:var(--radius);padding:20px;text-align:center;flex:1;min-width:140px;max-width:200px;position:relative;transition:border-color .5s,transform .5s}
+.loop-node.highlight{border-color:var(--accent);background:var(--accent-bg)}
+.loop-node.future{border-style:dashed;border-color:var(--accent);opacity:.7}
+.loop-arrow{color:var(--text3);font-size:1.5rem;flex-shrink:0;padding:0 4px}
+
+.mini-bar-track{height:18px;background:var(--surface2);border-radius:4px;margin:4px 0 10px;position:relative;overflow:hidden}
+.mini-bar-fill{height:100%;border-radius:4px}
+.mini-bar-label{display:flex;justify-content:space-between;font-size:.75rem}
+
+.cta-btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#ffffff;font-weight:700;font-size:1.1rem;padding:16px 40px;border-radius:999px;text-decoration:none;transition:all .3s;border:none;cursor:pointer}
+.cta-btn:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(78,50,103,.2)}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.pulse-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+
+.counter{display:inline-block}
+
+/* Dispute timeline */
+.dispute-row{display:grid;grid-template-columns:80px 1fr 100px 90px;gap:0;align-items:center;padding:14px 16px;border-bottom:1px solid var(--surface2);font-size:.85rem}
+.dispute-header{font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);border-bottom:2px solid var(--surface3);padding:10px 16px}
+.dispute-tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.7rem;font-weight:600}
+.dispute-ai{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-border)}
+.dispute-manual{background:var(--orange-bg);color:var(--orange);border:1px solid var(--orange-border)}
+
+/* Simulator */
+.sim-input{width:100%;padding:12px 16px;border:1px solid var(--surface3);border-radius:var(--radius-sm);font-size:1rem;background:var(--surface);color:var(--text);outline:none;font-family:'Inter',sans-serif;transition:border-color .3s}
+.sim-input:focus{border-color:var(--accent)}
+.sim-label{font-size:.8rem;color:var(--text2);margin-bottom:6px;font-weight:500}
+.sim-result{padding:20px;background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--radius);text-align:center;margin-top:16px}
+.sim-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--surface2);font-size:.9rem}
+.sim-row:last-child{border-bottom:none}
+
+/* Responsive */
+@media(max-width:768px){
+  section{padding:40px 16px;min-height:auto;scroll-snap-align:none}
+  html{scroll-snap-type:none}
+  .card-grid-3{grid-template-columns:1fr}
+  .card-grid-2{grid-template-columns:1fr}
+  .card-grid-4{grid-template-columns:repeat(2,1fr)}
+  .compare-grid{grid-template-columns:1fr}
+  .nav-dots{display:none}
+  .loop-track{flex-direction:column;gap:12px}
+  .loop-arrow{transform:rotate(90deg)}
+  .stat-mega{font-size:3rem}
+  .dispute-row{grid-template-columns:1fr;gap:4px}
+  .dispute-header{display:none}
+}
+@media(min-width:769px) and (max-width:1024px){
+  .card-grid-3{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- Password Gate -->
+<div id="gate">
+  <div class="gate-logo">Amazon x Respaid</div>
+  <h2>Enter password to continue</h2>
+  <input type="password" id="gate-pw" placeholder="Password" autocomplete="off" autofocus>
+  <div class="gate-err" id="gate-err"></div>
+</div>
+
+<!-- Topbar -->
+<div class="topbar">
+  <a class="topbar-logo" href="#s1">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="7" fill="#4E3267"/><path d="M10 7h7.5c3 0 5.5 2.2 5.5 5.2 0 2.2-1.4 4-3.4 4.8l4.4 8h-4.5l-3.8-7H14v7h-4V7zm4 7.5h3.5c1.2 0 2.2-.9 2.2-2.1 0-1.2-1-2.2-2.2-2.1H14v4.2z" fill="white"/></svg>
+    <span class="topbar-label">RESPAID</span>
+  </a>
+</div>
+
+<!-- Nav Dots -->
+<nav class="nav-dots" id="navDots"></nav>
+
+<!-- ==================== S1: HERO ==================== -->
+<section id="s1">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="badge" style="margin-bottom:32px"><span class="pulse-dot"></span> Batch #1 Pilot Results &middot; Customer-Obsessed Recovery &middot; March 2026</div>
+  </div>
+  <div class="reveal" style="transition-delay:.1s">
+    <div class="stat-num stat-mega">50.4%</div>
+    <div class="stat-sub">recovery rate on accounts Amazon classified as uncollectible</div>
+  </div>
+  <div class="card-grid card-grid-4 reveal" style="margin-top:40px;transition-delay:.2s">
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:1.8rem;color:var(--accent)"><span class="counter" data-target="63.5" data-prefix="$" data-suffix="K" data-decimals="1">$0</span></div>
+      <div class="stat-label">recovered in 20 days</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:1.8rem"><span class="counter" data-target="126" data-prefix="$" data-suffix="K">$0</span></div>
+      <div class="stat-label">placed (30 accounts)</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:1.8rem;color:var(--accent)">22s</div>
+      <div class="stat-label">avg AI dispute resolution</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:1.8rem;color:var(--green)">0</div>
+      <div class="stat-label">complaints across all channels</div>
+    </div>
+  </div>
+  <div class="reveal" style="margin-top:24px;transition-delay:.3s">
+    <div style="color:var(--text2);font-size:.95rem">Campaign 3665 &middot; Amazon Business &middot; November 14 &ndash; December 4, 2025</div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S2: SPEED ==================== -->
+<section id="s2" class="dark-section">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">Speed</div>
+    <div class="stat-sub" style="color:var(--text);font-weight:500;font-size:1.2rem;margin-bottom:8px">Bias for action. 20 days, not 180.</div>
+    <div class="stat-sub" style="margin-bottom:40px">These accounts had been aging for 180+ days before Respaid touched them.</div>
+  </div>
+  <div class="compare-grid reveal" style="transition-delay:.1s">
+    <div class="compare-card compare-green">
+      <div class="stat-num" style="font-size:clamp(3rem,8vw,5rem);color:var(--accent);margin:8px 0"><span class="counter" data-target="20">0</span> <span style="font-size:.5em;font-weight:600">days</span></div>
+      <div class="stat-label" style="font-size:1.1rem;color:var(--accent);font-weight:600">to 50% recovery</div>
+      <div class="stat-label" style="margin-top:4px">Respaid AI</div>
+    </div>
+    <div class="compare-card compare-red">
+      <div class="stat-num" style="font-size:clamp(3rem,8vw,5rem);color:var(--red);margin:8px 0">180+ <span style="font-size:.5em;font-weight:600">days</span></div>
+      <div class="stat-label" style="font-size:1.1rem;color:var(--red);font-weight:600">and still aging</div>
+      <div class="stat-label" style="margin-top:4px">Before Respaid</div>
+    </div>
+  </div>
+  <div class="card-grid card-grid-4 reveal" style="margin-top:20px;transition-delay:.2s">
+    <div class="card" style="text-align:center;padding:20px">
+      <div class="stat-num" style="font-size:1.6rem;color:var(--accent)">Day 0</div>
+      <div class="stat-label">first emails sent</div>
+    </div>
+    <div class="card" style="text-align:center;padding:20px">
+      <div class="stat-num" style="font-size:1.6rem;color:var(--accent)">5 disputes</div>
+      <div class="stat-label">responded same day</div>
+    </div>
+    <div class="card" style="text-align:center;padding:20px">
+      <div class="stat-num" style="font-size:1.6rem;color:var(--accent)">Day 10</div>
+      <div class="stat-label">second wave of responses</div>
+    </div>
+    <div class="card" style="text-align:center;padding:20px">
+      <div class="stat-num" style="font-size:1.6rem;color:var(--accent)">Day 20</div>
+      <div class="stat-label">campaign complete</div>
+    </div>
+  </div>
+  <div class="reveal" style="margin-top:24px;transition-delay:.3s">
+    <div class="badge">38% of debtors responded within hours of first contact</div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S3: THE MACHINE ==================== -->
+<section id="s3">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">The Machine</div>
+    <div class="stat-num stat-mega" style="color:var(--blue)"><span class="counter" data-target="120" data-suffix="+">0</span></div>
+    <div class="stat-sub">automated touchpoints across 30 accounts in 20 days &mdash; zero human intervention</div>
+  </div>
+  <div class="card-grid card-grid-3 reveal" style="margin-top:40px;transition-delay:.15s">
+    <div class="card">
+      <div class="card-accent-top" style="background:var(--blue)"></div>
+      <div style="margin-top:8px">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20M7 4v4"/></svg>
+      </div>
+      <div class="stat-num stat-med" style="color:var(--blue);margin-top:12px">115</div>
+      <div class="stat-label">emails delivered</div>
+      <div style="margin-top:8px;font-size:.8rem;color:var(--text3)">96% delivery rate &middot; 4 touchpoints per account</div>
+    </div>
+    <div class="card">
+      <div class="card-accent-top" style="background:var(--purple)"></div>
+      <div style="margin-top:8px">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.5"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+      </div>
+      <div class="stat-num stat-med" style="color:var(--purple);margin-top:12px">+30</div>
+      <div class="stat-label">new contacts found by AI</div>
+      <div style="margin-top:8px;font-size:.8rem;color:var(--text3)">19 of 30 accounts enriched &middot; 1.6 avg new contacts</div>
+    </div>
+    <div class="card">
+      <div class="card-accent-top" style="background:var(--orange)"></div>
+      <div style="margin-top:8px">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="stat-num stat-med" style="color:var(--orange);margin-top:12px">13</div>
+      <div class="stat-label">disputes handled</div>
+      <div style="margin-top:8px;font-size:.8rem;color:var(--text3)">6 auto-resolved by AI in &lt;25 seconds</div>
+    </div>
+  </div>
+  <div class="card-grid card-grid-3 reveal" style="margin-top:16px;transition-delay:.25s">
+    <div class="card" style="text-align:center;padding:20px">
+      <div class="stat-num" style="font-size:1.3rem;color:var(--accent)">$88,543</div>
+      <div class="stat-label">accounts enriched (70% of portfolio)</div>
+    </div>
+    <div class="card" style="text-align:center;padding:20px">
+      <div class="stat-num" style="font-size:1.3rem;color:var(--accent)">96%</div>
+      <div class="stat-label">email deliverability</div>
+    </div>
+    <div class="card" style="text-align:center;padding:20px">
+      <div class="stat-num" style="font-size:1.3rem;color:var(--accent)">0</div>
+      <div class="stat-label">spam complaints</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S4: AI DISPUTE RESOLUTION ==================== -->
+<section id="s4" class="dark-section">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">AI Dispute Resolution</div>
+    <div class="stat-sub" style="color:var(--text);font-weight:500;font-size:1.2rem;margin-bottom:8px">22 seconds vs 19 days</div>
+    <div class="stat-sub" style="margin-bottom:32px">When a debtor disputes, our AI classifies and resolves in real-time. No human queue.</div>
+  </div>
+
+  <div class="compare-grid reveal" style="transition-delay:.1s">
+    <div class="compare-card compare-green">
+      <div class="stat-num" style="font-size:clamp(3rem,8vw,5rem);color:var(--accent);margin:8px 0">22<span style="font-size:.4em;font-weight:600">s</span></div>
+      <div class="stat-label" style="font-size:1.1rem;color:var(--accent);font-weight:600">average AI resolution</div>
+      <div class="stat-label" style="margin-top:8px">6 of 13 disputes auto-resolved</div>
+      <div class="stat-label">$15,711 in disputed value handled</div>
+    </div>
+    <div class="compare-card compare-red">
+      <div class="stat-num" style="font-size:clamp(3rem,8vw,5rem);color:var(--red);margin:8px 0">19<span style="font-size:.4em;font-weight:600">d</span></div>
+      <div class="stat-label" style="font-size:1.1rem;color:var(--red);font-weight:600">Amazon collector response</div>
+      <div class="stat-label" style="margin-top:8px">7 disputes still open</div>
+      <div class="stat-label">$26,368 stuck waiting for human action</div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:32px;transition-delay:.2s">
+    <div class="card" style="text-align:left;max-width:780px;margin:0 auto;padding:24px">
+      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);font-weight:700;margin-bottom:16px">AI Auto-Resolved Disputes</div>
+
+      <div class="dispute-header dispute-row">
+        <div>Time</div><div>What the debtor said</div><div>Amount</div><div>Result</div>
+      </div>
+      <div class="dispute-row">
+        <div><span class="dispute-tag dispute-ai">17s</span></div>
+        <div style="color:var(--text2)">"Was this invoice submitted through our bill payer?"</div>
+        <div style="color:var(--text)">$7,320</div>
+        <div><span class="dispute-tag dispute-ai">Resolved</span></div>
+      </div>
+      <div class="dispute-row">
+        <div><span class="dispute-tag dispute-ai">21s</span></div>
+        <div style="color:var(--text2)">"We no longer own this asset. Contact Michael G."</div>
+        <div style="color:var(--text)">$2,490</div>
+        <div><span style="color:var(--green);font-weight:600;font-size:.8rem">Paid $2,490</span></div>
+      </div>
+      <div class="dispute-row">
+        <div><span class="dispute-tag dispute-ai">22s</span></div>
+        <div style="color:var(--text2)">"Property sold Dec 31. Contact new owners."</div>
+        <div style="color:var(--text)">$1,710</div>
+        <div><span style="color:var(--green);font-weight:600;font-size:.8rem">Paid $1,710</span></div>
+      </div>
+      <div class="dispute-row">
+        <div><span class="dispute-tag dispute-ai">23s</span></div>
+        <div style="color:var(--text2)">"This is the bill we paid with check #1627"</div>
+        <div style="color:var(--text)">$1,449</div>
+        <div><span style="color:var(--green);font-weight:600;font-size:.8rem">Paid $1,449</span></div>
+      </div>
+      <div class="dispute-row">
+        <div><span class="dispute-tag dispute-ai">24s</span></div>
+        <div style="color:var(--text2)">Out-of-office auto-reply</div>
+        <div style="color:var(--text)">$1,600</div>
+        <div><span class="dispute-tag dispute-ai">Resolved</span></div>
+      </div>
+      <div class="dispute-row" style="border-bottom:none">
+        <div><span class="dispute-tag dispute-ai">25s</span></div>
+        <div style="color:var(--text2)">Debtor forwarded email (engagement signal)</div>
+        <div style="color:var(--text)">$1,142</div>
+        <div><span class="dispute-tag dispute-ai">Resolved</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:16px;transition-delay:.25s">
+    <div class="badge-green badge">3 of 6 auto-resolved disputes led directly to payment ($5,649)</div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S5: THE COLLECTOR PROBLEM ==================== -->
+<section id="s5">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">Real Case &middot; $9,763</div>
+    <div class="stat-num" style="font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:32px">Customer ready to pay on Day 0. Took 19 days.</div>
+  </div>
+
+  <div class="reveal" style="transition-delay:.1s">
+    <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;max-width:780px;margin:0 auto;align-items:stretch">
+      <div style="padding:20px;background:var(--green-bg);border:1px solid var(--green-border);border-radius:var(--radius);text-align:left">
+        <div style="font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--green);margin-bottom:10px">Day 0</div>
+        <div style="font-size:.88rem;color:var(--text);font-style:italic;line-height:1.5">"Please provide a W9 so we can process payment."</div>
+        <div style="font-size:.75rem;color:var(--green);font-weight:600;margin-top:10px">Ready to pay.</div>
+      </div>
+      <div style="display:flex;align-items:center;padding:0 8px;color:var(--text3);font-size:1.4rem">&rarr;</div>
+      <div style="padding:20px;background:var(--red-bg);border:1px solid var(--red-border);border-radius:var(--radius);text-align:left">
+        <div style="font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--red);margin-bottom:10px">Day 3 &ndash; 10</div>
+        <div style="font-size:.82rem;color:var(--text2);line-height:1.5">Collector on PTO. 12 messages in one day. Another collector sick. Tax issue. 5+ people involved. No owner.</div>
+        <div style="font-size:.75rem;color:var(--red);font-weight:600;margin-top:10px">22 messages. Zero resolution.</div>
+      </div>
+      <div style="display:flex;align-items:center;padding:0 8px;color:var(--text3);font-size:1.4rem">&rarr;</div>
+      <div style="padding:20px;background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:var(--radius);text-align:left">
+        <div style="font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:10px">Day 19</div>
+        <div style="font-size:.88rem;color:var(--text);font-style:italic;line-height:1.5">"We received the updated invoice, processing now."</div>
+        <div style="font-size:.75rem;color:var(--blue);font-weight:600;margin-top:10px">Finally moving.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="compare-grid reveal" style="margin-top:32px;max-width:500px;margin-left:auto;margin-right:auto;transition-delay:.2s">
+    <div style="padding:20px;background:var(--red-bg);border-radius:var(--radius);border:1px solid var(--red-border);text-align:center">
+      <div style="font-size:2.5rem;font-weight:800;color:var(--red)">19 days</div>
+      <div style="font-size:.82rem;color:var(--text2);margin-top:4px">22 messages &middot; 5+ people</div>
+    </div>
+    <div style="padding:20px;background:var(--accent-bg);border-radius:var(--radius);border:1px solid var(--accent-border);text-align:center">
+      <div style="font-size:2.5rem;font-weight:800;color:var(--accent)">&lt;30s</div>
+      <div style="font-size:.82rem;color:var(--text2);margin-top:4px">AI auto-attaches W9 &rarr; paid Day 0</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S6: EVERY DISPUTE IS A BUYING SIGNAL ==================== -->
+<section id="s6" class="dark-section">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">Disputes = Buying Signals</div>
+    <div class="stat-num stat-mega" style="color:var(--accent)">0</div>
+    <div class="stat-sub" style="color:var(--text);font-weight:500;font-size:1.2rem;margin-top:8px">outright refusals out of 13 disputes</div>
+  </div>
+
+  <div class="reveal" style="margin-top:32px;transition-delay:.1s">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:700px;margin:0 auto">
+      <div style="padding:20px;background:var(--green-bg);border:1px solid var(--green-border);border-radius:var(--radius);text-align:center">
+        <div class="stat-num" style="font-size:2.2rem;color:var(--green)">6</div>
+        <div style="font-size:.8rem;color:var(--text2);margin-top:4px;font-weight:500">"Send me the docs"</div>
+        <div style="font-size:.72rem;color:var(--text3);margin-top:2px">W9 requests, invoice requests, payment proofs</div>
+      </div>
+      <div style="padding:20px;background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:var(--radius);text-align:center">
+        <div class="stat-num" style="font-size:2.2rem;color:var(--blue)">6</div>
+        <div style="font-size:.8rem;color:var(--text2);margin-top:4px;font-weight:500">"Wrong person"</div>
+        <div style="font-size:.72rem;color:var(--text3);margin-top:2px">Contact redirects, role changes, property sold</div>
+      </div>
+      <div style="padding:20px;background:var(--orange-bg);border:1px solid var(--orange-border);border-radius:var(--radius);text-align:center">
+        <div class="stat-num" style="font-size:2.2rem;color:var(--orange)">1</div>
+        <div style="font-size:.8rem;color:var(--text2);margin-top:4px;font-weight:500">"We cancelled"</div>
+        <div style="font-size:.72rem;color:var(--text3);margin-top:2px">Only Amazon can verify</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:32px;transition-delay:.2s">
+    <div style="display:flex;justify-content:center;gap:32px;flex-wrap:wrap">
+      <div style="text-align:center">
+        <div style="width:150px;height:150px;border-radius:50%;background:var(--surface);border:3px solid var(--surface3);display:flex;align-items:center;justify-content:center;margin:0 auto">
+          <div><span class="stat-num" style="font-size:2.5rem;color:var(--text3)">46%</span><div style="font-size:.65rem;color:var(--text3);margin-top:2px">auto-resolved</div></div>
+        </div>
+        <div class="stat-label" style="margin-top:10px">Without invoices</div>
+      </div>
+      <div style="display:flex;align-items:center">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+      <div style="text-align:center">
+        <div style="width:150px;height:150px;border-radius:50%;background:var(--accent-bg2);border:3px solid var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 0 30px rgba(167,139,250,.15)">
+          <div><span class="stat-num" style="font-size:2.5rem;color:var(--accent)">92%</span><div style="font-size:.65rem;color:var(--accent);margin-top:2px">auto-resolved</div></div>
+        </div>
+        <div class="stat-label" style="margin-top:10px;color:var(--accent)">With invoice access</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:24px;transition-delay:.3s">
+    <div class="badge" style="font-size:.85rem;padding:10px 20px">Every response is engagement. Zero rejections. 100% are asking for help to pay.</div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S7: CONTACT INTELLIGENCE ==================== -->
+<section id="s7">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">Contact Intelligence</div>
+    <div class="stat-num stat-mega" style="color:var(--accent)">89%</div>
+    <div class="stat-sub" style="color:var(--text);font-weight:500;font-size:1.2rem;margin-top:8px">of recovered dollars came from accounts with AI-found contacts</div>
+  </div>
+
+  <div class="card-grid card-grid-3 reveal" style="margin-top:32px;transition-delay:.1s">
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:2.5rem;color:var(--accent)">+30</div>
+      <div class="stat-label">new decision-makers found</div>
+      <div style="font-size:.75rem;color:var(--text3);margin-top:4px">Amazon gave us 1 per account. AI found 1.6 more.</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:2.5rem;color:var(--green)">$56.6K</div>
+      <div class="stat-label">recovered with enriched contacts</div>
+      <div style="font-size:.75rem;color:var(--text3);margin-top:4px">vs $6.9K from original contacts only</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:2.5rem;color:var(--blue)">5</div>
+      <div class="stat-label">payments directly from AI contacts</div>
+      <div style="font-size:.75rem;color:var(--text3);margin-top:4px">$24.6K where enriched contact was the respondent</div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:24px;transition-delay:.2s">
+    <div class="card" style="max-width:700px;margin:0 auto;text-align:left;padding:24px 32px">
+      <div style="font-weight:700;font-size:.9rem;color:var(--accent);margin-bottom:12px">How it works: CC enrichment</div>
+      <div style="font-size:.85rem;color:var(--text2);line-height:1.6;margin-bottom:12px">
+        AI discovers additional decision-makers at each company and adds them as <strong style="color:var(--text)">CC on every collection email</strong>. When the primary contact is unresponsive, the enriched contact sees the email and acts.
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="padding:10px;background:var(--accent-bg);border-radius:var(--radius-sm);font-size:.8rem;text-align:center">
+          <div style="color:var(--accent);font-weight:700">Jamie Goslin</div>
+          <div style="color:var(--text3)">Enriched contact replied to dispute &rarr; $1,710 paid</div>
+        </div>
+        <div style="padding:10px;background:var(--accent-bg);border-radius:var(--radius-sm);font-size:.8rem;text-align:center">
+          <div style="color:var(--accent);font-weight:700">Matt Carpenter</div>
+          <div style="color:var(--text3)">Discovered via redirect chain &rarr; $1,257 paid</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:16px;transition-delay:.3s">
+    <div class="badge" style="font-size:.85rem;padding:10px 20px">No agency does this. No in-house team does this. This is unique to Respaid.</div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S8: EMAIL — RUNNING BLIND ==================== -->
+<section id="s8" class="dark-section">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">Email</div>
+    <div class="stat-num" style="font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:8px">The pilot was running blind. And still hit 96%.</div>
+    <div class="stat-sub" style="margin-bottom:40px">115 of 120 emails delivered through a shared mailbox with redirects. Zero spam complaints.</div>
+  </div>
+
+  <div class="compare-grid reveal" style="max-width:700px;margin:0 auto;transition-delay:.1s">
+    <div class="card" style="text-align:left">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--red-bg);display:flex;align-items:center;justify-content:center">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </div>
+        <div style="font-weight:700;color:var(--red)">Pilot (what we had)</div>
+      </div>
+      <div class="compare-row" style="font-size:.82rem"><div class="compare-icon" style="color:var(--red)">&times;</div> No open tracking</div>
+      <div class="compare-row" style="font-size:.82rem"><div class="compare-icon" style="color:var(--red)">&times;</div> No click tracking</div>
+      <div class="compare-row" style="font-size:.82rem"><div class="compare-icon" style="color:var(--red)">&times;</div> No geographic data</div>
+      <div class="compare-row" style="font-size:.82rem"><div class="compare-icon" style="color:var(--red)">&times;</div> No behavioral triggers</div>
+      <div style="margin-top:12px;padding:10px;background:var(--red-bg);border-radius:var(--radius-sm);font-size:.78rem;color:var(--red);text-align:center;border:1px solid var(--red-border)">
+        Shared mailbox + redirects. Still delivered 96%.
+      </div>
+    </div>
+    <div class="card" style="text-align:left;border:2px solid var(--accent)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--accent-bg2);display:flex;align-items:center;justify-content:center">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <div style="font-weight:700;color:var(--accent)">Phase 2 (full platform)</div>
+      </div>
+      <div class="compare-row" style="font-size:.82rem"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> Real-time open rates (45-60%)</div>
+      <div class="compare-row" style="font-size:.82rem"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> Click-through on payment links</div>
+      <div class="compare-row" style="font-size:.82rem"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> Geographic heat maps by state</div>
+      <div class="compare-row" style="font-size:.82rem"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> Email open &rarr; triggers AI call in 5 min</div>
+      <div style="margin-top:12px;padding:10px;background:var(--accent-bg);border-radius:var(--radius-sm);font-size:.78rem;color:var(--accent);text-align:center;border:1px solid var(--accent-border)">
+        Full SendGrid integration. Compliance-ready.
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:24px;transition-delay:.2s">
+    <div class="badge" style="font-size:.82rem;padding:8px 16px">Going from blind outreach to a full analytics dashboard</div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S8b: WAS IT REALLY RESPAID? ==================== -->
+<section id="s8b">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">The Proof</div>
+    <div class="stat-num" style="font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:32px">"How do we know it was Respaid, not just timing?"</div>
+  </div>
+
+  <div class="card-grid card-grid-2 reveal" style="max-width:700px;margin:0 auto;transition-delay:.1s">
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:2.5rem;color:var(--accent)">38%</div>
+      <div class="stat-label">responded within hours of first email</div>
+      <div style="font-size:.75rem;color:var(--text3);margin-top:4px">5 disputes opened on Day 0 &mdash; immediate reaction</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:2.5rem;color:var(--accent)">180+</div>
+      <div class="stat-label">days these accounts had been aging</div>
+      <div style="font-size:.75rem;color:var(--text3);margin-top:4px">Zero movement before Respaid touched them</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:2.5rem;color:var(--green)">89%</div>
+      <div class="stat-label">of recovered $ had AI-found contacts</div>
+      <div style="font-size:.75rem;color:var(--text3);margin-top:4px">Contacts Amazon didn't have in their system</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:2.5rem;color:var(--blue)">13/13</div>
+      <div class="stat-label">payments went directly to Amazon</div>
+      <div style="font-size:.75rem;color:var(--text3);margin-top:4px">Our outreach triggered it. They paid through your channels.</div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:24px;transition-delay:.2s">
+    <div class="badge" style="font-size:.82rem;padding:8px 16px">Accounts dead for 6+ months. Respaid emails go out. Payments start within hours.</div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S9: TRAJECTORY ==================== -->
+<section id="s9" class="dark-section">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">Trajectory</div>
+    <div class="stat-sub" style="color:var(--text);font-weight:500;font-size:1.2rem;margin-bottom:8px">Each phase adds a new capability</div>
+    <div class="stat-sub" style="margin-bottom:40px">The pilot ran blind. Phase 2 upgrades everything.</div>
+  </div>
+  <div class="reveal" style="transition-delay:.15s">
+    <div class="loop-track">
+      <div class="loop-node highlight">
+        <div style="font-size:.65rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Phase 1 (Done)</div>
+        <div class="stat-num" style="font-size:1.4rem;color:var(--accent)">50.4%</div>
+        <div class="stat-label" style="font-size:.75rem">30 accts &middot; email only</div>
+      </div>
+      <div class="loop-arrow">&rarr;</div>
+      <div class="loop-node future">
+        <div style="font-size:.65rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Phase 2</div>
+        <div class="stat-num" style="font-size:1.4rem;color:var(--accent)">60%+</div>
+        <div class="stat-label" style="font-size:.75rem">500 accts + invoices + tracking</div>
+      </div>
+      <div class="loop-arrow">&rarr;</div>
+      <div class="loop-node future">
+        <div style="font-size:.65rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Phase 3</div>
+        <div class="stat-num" style="font-size:1.4rem;color:var(--accent)">70%+</div>
+        <div class="stat-label" style="font-size:.75rem">+ AI calls + Amazon Collect API</div>
+      </div>
+      <div class="loop-arrow">&rarr;</div>
+      <div class="loop-node future" style="border-width:2px">
+        <div style="font-size:.65rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Scale</div>
+        <div class="stat-num" style="font-size:1.4rem;color:var(--accent)">Multi-BU</div>
+        <div class="stat-label" style="font-size:.75rem">Amazon Biz + AWS + Transport</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-grid card-grid-2 reveal" style="margin-top:32px;transition-delay:.25s;max-width:700px;margin-left:auto;margin-right:auto">
+    <div class="card" style="text-align:left">
+      <div style="font-weight:700;font-size:.9rem;color:var(--text);margin-bottom:12px">What changes in Phase 2</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.8rem"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> Invoice access (46% &rarr; 92% auto-resolution)</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.8rem"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> Full email tracking (opens, clicks, bounces)</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.8rem"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> Day 31 accounts (not Day 180+)</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.8rem"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> 500+ accounts (statistical significance)</div>
+    </div>
+    <div class="card" style="text-align:left">
+      <div style="font-weight:700;font-size:.9rem;color:var(--text);margin-bottom:12px">What this unlocks</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.8rem"><div class="compare-icon" style="color:var(--blue)">&#10003;</div> Real-time dashboard for Shelley's team</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.8rem"><div class="compare-icon" style="color:var(--blue)">&#10003;</div> Instant payment attribution</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.8rem"><div class="compare-icon" style="color:var(--blue)">&#10003;</div> Geographic and behavioral analytics</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.8rem"><div class="compare-icon" style="color:var(--blue)">&#10003;</div> Multi-BU expansion readiness</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S10: BUILD vs BUY ==================== -->
+<section id="s10">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">Build vs Buy</div>
+    <div class="stat-sub" style="color:var(--text);font-weight:500;font-size:1.2rem;margin-bottom:32px">Building in-house is tempting. Here's what you'd need.</div>
+  </div>
+  <div class="compare-grid reveal" style="transition-delay:.15s">
+    <div class="compare-card compare-red" style="text-align:left">
+      <div style="text-align:center;margin-bottom:20px">
+        <div class="stat-num" style="font-size:2.2rem;color:var(--red)">$2M+</div>
+        <div class="stat-label" style="color:var(--red);font-weight:600">Build in-house (18&ndash;24 months)</div>
+      </div>
+      <div class="compare-row"><div class="compare-icon" style="color:var(--red)">&times;</div> AI dispute classification + auto-resolution engine</div>
+      <div class="compare-row"><div class="compare-icon" style="color:var(--red)">&times;</div> Contact enrichment across all 50 states</div>
+      <div class="compare-row"><div class="compare-icon" style="color:var(--red)">&times;</div> Compliance-safe AI calling (&lt;500ms latency)</div>
+      <div class="compare-row"><div class="compare-icon" style="color:var(--red)">&times;</div> Multi-channel orchestration engine</div>
+      <div class="compare-row"><div class="compare-icon" style="color:var(--red)">&times;</div> Real-time analytics + reporting dashboard</div>
+      <div style="margin-top:16px;padding:12px;background:var(--red-bg);border-radius:var(--radius-sm);text-align:center;font-size:.85rem;color:var(--red)">10 Manila agents for 500 accounts = $252K/year &middot; no AI, no enrichment, 8% recovery</div>
+    </div>
+    <div class="compare-card compare-green" style="text-align:left">
+      <div style="text-align:center;margin-bottom:20px">
+        <div class="stat-num" style="font-size:2.2rem;color:var(--accent)">2 weeks</div>
+        <div class="stat-label" style="color:var(--accent);font-weight:600">Deploy with Respaid</div>
+      </div>
+      <div class="compare-row"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> Already trained on 30 live Amazon accounts</div>
+      <div class="compare-row"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> 50.4% recovery on "impossible" accounts</div>
+      <div class="compare-row"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> 22-second AI dispute resolution (proven)</div>
+      <div class="compare-row"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> Zero complaints across all channels</div>
+      <div class="compare-row"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> White-label: runs under Amazon's brand</div>
+      <div style="margin-top:16px;padding:12px;background:var(--accent-bg);border-radius:var(--radius-sm);text-align:center;font-size:.85rem;color:var(--accent)">YC S23 &middot; Enterprise clients include Microsoft</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S11: PROJECTIONS ==================== -->
+<section id="s11" class="dark-section">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">Projections</div>
+    <div class="stat-sub" style="color:var(--text);font-weight:500;font-size:1.2rem;margin-bottom:8px">Based on Amazon's public financial data</div>
+    <div class="stat-sub" style="margin-bottom:32px">Amazon Business: $35B+ GMV &middot; AWS: $128.7B revenue &middot; Bad debt provision: $2B (3.9%)</div>
+  </div>
+
+  <div class="card-grid card-grid-3 reveal" style="transition-delay:.1s">
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:2.5rem;color:var(--accent)">$1.37B</div>
+      <div class="stat-label">estimated collectible AR</div>
+      <div style="font-size:.75rem;color:var(--text3);margin-top:4px">Amazon Business alone (3.9% of $35B)</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:2.5rem;color:var(--blue)">$685M</div>
+      <div class="stat-label">recoverable at 50% rate</div>
+      <div style="font-size:.75rem;color:var(--text3);margin-top:4px">Based on pilot recovery rate</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="font-size:2.5rem;color:var(--green)">$2B</div>
+      <div class="stat-label">Amazon's bad debt provision (FY2024)</div>
+      <div style="font-size:.75rem;color:var(--text3);margin-top:4px">SEC filing, 10-K annual report</div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:24px;transition-delay:.2s">
+    <div class="card" style="max-width:700px;margin:0 auto;text-align:left;padding:24px 32px">
+      <div style="font-weight:700;font-size:.9rem;color:var(--accent);margin-bottom:12px">If Respaid handles just 1% of Amazon Business AR</div>
+      <div class="sim-row">
+        <span style="color:var(--text2)">Accounts receivable (1%)</span>
+        <span style="font-weight:700;color:var(--text)">$13.7M</span>
+      </div>
+      <div class="sim-row">
+        <span style="color:var(--text2)">Recovered at 50% rate</span>
+        <span style="font-weight:700;color:var(--accent)">$6.85M</span>
+      </div>
+      <div class="sim-row">
+        <span style="color:var(--text2)">Revenue to Amazon (net of fees)</span>
+        <span style="font-weight:700;color:var(--green)">$5.82M</span>
+      </div>
+      <div class="sim-row" style="border-bottom:none">
+        <span style="color:var(--text2)">Traditional agency recovery (~15%)</span>
+        <span style="font-weight:700;color:var(--red)">$2.05M</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S11b: AGING = MONEY LOST ==================== -->
+<section id="s11b">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">AR Aging</div>
+    <div class="stat-num" style="font-size:clamp(1.5rem,3.5vw,2.2rem)">Every week you wait, collectability drops 1%</div>
+    <div class="stat-sub" style="margin-top:8px;margin-bottom:40px">Industry data on B2B receivables. This is happening in your AR aging report right now.</div>
+  </div>
+
+  <!-- Debt Aging Decay Chart -->
+  <div class="reveal" style="transition-delay:.1s">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:640px;margin:0 auto;text-align:center">
+      <div>
+        <div style="height:120px;display:flex;flex-direction:column;justify-content:flex-end">
+          <div style="height:70%;background:linear-gradient(180deg,var(--green),rgba(5,150,105,.4));border-radius:8px 8px 0 0"></div>
+        </div>
+        <div style="font-weight:800;font-size:1.6rem;color:var(--green);margin-top:12px">69.6%</div>
+        <div style="font-size:.78rem;color:var(--text2)">at 90 days</div>
+      </div>
+      <div>
+        <div style="height:120px;display:flex;flex-direction:column;justify-content:flex-end">
+          <div style="height:52%;background:linear-gradient(180deg,var(--orange),rgba(217,119,6,.4));border-radius:8px 8px 0 0"></div>
+        </div>
+        <div style="font-weight:800;font-size:1.6rem;color:var(--orange);margin-top:12px">52.1%</div>
+        <div style="font-size:.78rem;color:var(--text2)">at 6 months</div>
+      </div>
+      <div>
+        <div style="height:120px;display:flex;flex-direction:column;justify-content:flex-end">
+          <div style="height:23%;background:linear-gradient(180deg,var(--red),rgba(220,38,38,.4));border-radius:8px 8px 0 0"></div>
+        </div>
+        <div style="font-weight:800;font-size:1.6rem;color:var(--red);margin-top:12px">22.8%</div>
+        <div style="font-size:.78rem;color:var(--text2)">at 1 year</div>
+      </div>
+      <div>
+        <div style="height:120px;display:flex;flex-direction:column;justify-content:flex-end">
+          <div style="height:10%;background:linear-gradient(180deg,var(--red),rgba(220,38,38,.2));border-radius:8px 8px 0 0"></div>
+        </div>
+        <div style="font-weight:800;font-size:1.6rem;color:var(--red);margin-top:12px">10%</div>
+        <div style="font-size:.78rem;color:var(--text2)">over 1 year</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;font-size:.78rem;color:var(--text3)">Source: Kaplan Group &amp; Resolve Pay &mdash; Commercial Debt Statistics</div>
+  </div>
+
+  <div class="compare-grid reveal" style="margin-top:32px;max-width:600px;margin-left:auto;margin-right:auto;transition-delay:.2s">
+    <div style="padding:20px;background:var(--surface);border-radius:var(--radius);text-align:center">
+      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-weight:600;margin-bottom:8px">Pilot accounts (Day 180+)</div>
+      <div class="stat-num" style="font-size:2rem;color:var(--accent)">50.4%</div>
+      <div style="font-size:.8rem;color:var(--text2);margin-top:4px">recovered by Respaid</div>
+    </div>
+    <div style="padding:20px;background:var(--surface);border-radius:var(--radius);text-align:center">
+      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-weight:600;margin-bottom:8px">Day 31 accounts (Phase 2)</div>
+      <div class="stat-num" style="font-size:2rem;color:var(--green)">60%+</div>
+      <div style="font-size:.8rem;color:var(--text2);margin-top:4px">projected with fresher accounts</div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:24px;transition-delay:.3s">
+    <div class="badge" style="font-size:.82rem;padding:8px 16px">We got 50% on accounts the industry says have 22.8% collectability</div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S12: ROI SIMULATOR ==================== -->
+<section id="s12" style="min-height:auto;padding:80px 24px">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">ROI Simulator</div>
+    <div class="stat-sub" style="color:var(--text);font-weight:500;font-size:1.2rem;margin-bottom:32px">Compare Respaid AI against every alternative. Adjust the inputs.</div>
+  </div>
+
+  <div class="reveal" style="transition-delay:.15s">
+    <div class="card" style="max-width:800px;margin:0 auto;text-align:left;padding:32px">
+      <!-- Inputs -->
+      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);font-weight:700;margin-bottom:16px">Your Portfolio</div>
+      <div class="card-grid card-grid-3" style="margin-bottom:24px">
+        <div>
+          <div class="sim-label">Monthly accounts placed</div>
+          <input type="number" class="sim-input" id="simAccounts" value="500" min="10" max="100000">
+        </div>
+        <div>
+          <div class="sim-label">Average account value ($)</div>
+          <input type="number" class="sim-input" id="simAvgValue" value="4200" min="100" max="1000000">
+        </div>
+        <div>
+          <div class="sim-label">Account age when placed</div>
+          <select class="sim-input" id="simAge">
+            <option value="31">Day 31 (early)</option>
+            <option value="90">Day 90 (standard)</option>
+            <option value="180" selected>Day 180+ (late-stage)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Comparison table -->
+      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);font-weight:700;margin-bottom:12px">Side-by-Side Comparison</div>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:.82rem" id="simTable">
+          <thead>
+            <tr style="border-bottom:2px solid var(--surface3)">
+              <th style="text-align:left;padding:10px 12px;color:var(--text3);font-weight:600;font-size:.7rem;text-transform:uppercase;letter-spacing:1px;width:160px">Metric</th>
+              <th style="text-align:center;padding:10px 12px;color:var(--accent);font-weight:700;font-size:.75rem;background:var(--accent-bg);border-radius:8px 8px 0 0">Respaid AI</th>
+              <th style="text-align:center;padding:10px 12px;color:var(--text3);font-weight:600;font-size:.7rem;text-transform:uppercase">Contingency Agency</th>
+              <th style="text-align:center;padding:10px 12px;color:var(--text3);font-weight:600;font-size:.7rem;text-transform:uppercase">Offshore BPO</th>
+              <th style="text-align:center;padding:10px 12px;color:var(--text3);font-weight:600;font-size:.7rem;text-transform:uppercase">In-House Team</th>
+            </tr>
+          </thead>
+          <tbody id="simBody">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Summary -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px" id="simSummary">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="sim-result" id="simResult" style="margin-top:20px">
+        <div style="font-size:.8rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Respaid Advantage: Annual Net Benefit vs Best Alternative</div>
+        <div class="stat-num" style="font-size:2.5rem;color:var(--accent)" id="simAdvantage">$0</div>
+        <div style="font-size:.85rem;color:var(--text2);margin-top:8px" id="simAdvantageLabel">more net recovery per year &mdash; zero headcount &mdash; A2Z guaranteed</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S12b: INTEGRATION REQUIREMENTS ==================== -->
+<section id="s12b" class="dark-section">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">Integration Requirements</div>
+    <div class="stat-sub" style="color:var(--text);font-weight:500;font-size:1.2rem;margin-bottom:8px">Two integrations unlock the full platform</div>
+    <div class="stat-sub" style="margin-bottom:32px">The pilot ran blind. Phase 2 requires two things to deliver the results above.</div>
+  </div>
+
+  <div class="card-grid card-grid-2 reveal" style="max-width:700px;margin:0 auto;transition-delay:.15s">
+    <div class="card" style="text-align:left;border:2px solid var(--accent)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--accent-bg2);display:flex;align-items:center;justify-content:center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+        </div>
+        <div style="font-weight:700;color:var(--accent)">SendGrid Email Routing</div>
+      </div>
+      <div class="compare-row" style="color:var(--text2);font-size:.82rem"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> Real-time open &amp; click tracking</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.82rem"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> Geographic heat maps</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.82rem"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> Bounce detection &amp; list hygiene</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.82rem"><div class="compare-icon" style="color:var(--accent)">&#10003;</div> Behavioral triggers (open &rarr; AI call)</div>
+      <div style="margin-top:12px;padding:10px;background:var(--accent-bg);border-radius:var(--radius-sm);font-size:.78rem;color:var(--accent);text-align:center">
+        <strong>Already deployed</strong> &middot; Plug and play
+      </div>
+    </div>
+
+    <div class="card" style="text-align:left;border:2px solid var(--blue)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--blue-bg);display:flex;align-items:center;justify-content:center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+        </div>
+        <div style="font-weight:700;color:var(--blue)">Amazon Collect API</div>
+      </div>
+      <div class="compare-row" style="color:var(--text2);font-size:.82rem"><div class="compare-icon" style="color:var(--blue)">&#10003;</div> Invoice auto-attachment (46% &rarr; 92%)</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.82rem"><div class="compare-icon" style="color:var(--blue)">&#10003;</div> Real-time payment attribution</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.82rem"><div class="compare-icon" style="color:var(--blue)">&#10003;</div> Auto-close on payment received</div>
+      <div class="compare-row" style="color:var(--text2);font-size:.82rem"><div class="compare-icon" style="color:var(--blue)">&#10003;</div> Bi-directional case sync</div>
+      <div style="margin-top:12px;padding:10px;background:var(--blue-bg);border-radius:var(--radius-sm);font-size:.78rem;color:var(--blue);text-align:center">
+        <strong>Requires Amazon engineering</strong> &middot; 2&ndash;4 week integration
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:24px;transition-delay:.25s">
+    <div class="card" style="max-width:700px;margin:0 auto;text-align:left;padding:24px 32px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span style="color:var(--accent);font-weight:700;font-size:.9rem">WHY THESE ARE NON-NEGOTIABLE</span>
+      </div>
+      <div style="color:var(--text2);font-size:.9rem;line-height:1.6">
+        Without Amazon Collect integration, we can't auto-attach invoices &mdash; and <strong style="color:var(--text)">54% of disputes require manual handling</strong>. Without SendGrid routing, you get zero visibility into email engagement. These two integrations are the difference between the pilot (good) and the full platform (transformational).
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S12c: WHAT YOU PAY TODAY ==================== -->
+<section id="s12c">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">The Comparison</div>
+    <div class="stat-num" style="font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:8px">What Amazon pays today vs. Respaid</div>
+    <div class="stat-sub" style="margin-bottom:32px">500 accounts/month &middot; $2.1M portfolio &middot; Day 180+ accounts</div>
+  </div>
+
+  <div class="reveal" style="transition-delay:.1s">
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:.82rem;max-width:800px;margin:0 auto;text-align:left" cellpadding="0" cellspacing="0">
+        <thead>
+          <tr style="border-bottom:2px solid var(--surface3)">
+            <th style="padding:12px;color:var(--text3);font-weight:600;font-size:.7rem;text-transform:uppercase;letter-spacing:1px;width:180px"></th>
+            <th style="padding:12px;color:var(--text3);font-weight:600;font-size:.72rem;text-transform:uppercase;text-align:center">Current Agency</th>
+            <th style="padding:12px;color:var(--text3);font-weight:600;font-size:.72rem;text-transform:uppercase;text-align:center">Current BPO</th>
+            <th style="padding:12px;text-align:center;color:var(--accent);font-weight:700;font-size:.72rem;text-transform:uppercase;background:var(--accent-bg);border-radius:8px 8px 0 0">Respaid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:10px 12px;color:var(--text2);font-weight:500">Model</td>
+            <td style="padding:10px 12px;color:var(--text2);text-align:center">30% contingency</td>
+            <td style="padding:10px 12px;color:var(--text2);text-align:center">$10/account flat</td>
+            <td style="padding:10px 12px;text-align:center;background:var(--accent-bg);color:var(--accent);font-weight:600">$3/account + 10%</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:10px 12px;color:var(--text2);font-weight:500">Recovery rate</td>
+            <td style="padding:10px 12px;color:var(--text2);text-align:center">15%</td>
+            <td style="padding:10px 12px;color:var(--red);text-align:center;font-weight:600">0% (written off)</td>
+            <td style="padding:10px 12px;text-align:center;background:var(--accent-bg);color:var(--accent);font-weight:700">40%+</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:10px 12px;color:var(--text2);font-weight:500">Amount recovered</td>
+            <td style="padding:10px 12px;color:var(--text2);text-align:center">$315K</td>
+            <td style="padding:10px 12px;color:var(--red);text-align:center">$0</td>
+            <td style="padding:10px 12px;text-align:center;background:var(--accent-bg);color:var(--accent);font-weight:700">$840K</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:10px 12px;color:var(--text2);font-weight:500">Fee to provider</td>
+            <td style="padding:10px 12px;color:var(--text2);text-align:center">$94,500</td>
+            <td style="padding:10px 12px;color:var(--text2);text-align:center">$5,000</td>
+            <td style="padding:10px 12px;text-align:center;background:var(--accent-bg);color:var(--accent);font-weight:600">$85,500</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:10px 12px;color:var(--text);font-weight:700">Net to Amazon</td>
+            <td style="padding:10px 12px;color:var(--text);text-align:center;font-weight:700">$220,500</td>
+            <td style="padding:10px 12px;color:var(--red);text-align:center;font-weight:700">-$5,000</td>
+            <td style="padding:10px 12px;text-align:center;background:var(--accent-bg);color:var(--accent);font-weight:800;font-size:.95rem">$754,500</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:10px 12px;color:var(--text2);font-weight:500">Time to results</td>
+            <td style="padding:10px 12px;color:var(--text2);text-align:center">60&ndash;120 days</td>
+            <td style="padding:10px 12px;color:var(--text3);text-align:center">N/A</td>
+            <td style="padding:10px 12px;text-align:center;background:var(--accent-bg);color:var(--accent);font-weight:600">20 days</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--surface2)">
+            <td style="padding:10px 12px;color:var(--text2);font-weight:500">Headcount</td>
+            <td style="padding:10px 12px;color:var(--text2);text-align:center">Account manager</td>
+            <td style="padding:10px 12px;color:var(--text2);text-align:center">3&ndash;5 agents</td>
+            <td style="padding:10px 12px;text-align:center;background:var(--accent-bg);color:var(--accent);font-weight:600">Zero</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 12px;color:var(--text2);font-weight:500">Complaints</td>
+            <td style="padding:10px 12px;color:var(--text3);text-align:center">Unknown</td>
+            <td style="padding:10px 12px;color:var(--text3);text-align:center">N/A</td>
+            <td style="padding:10px 12px;text-align:center;background:var(--accent-bg);border-radius:0 0 8px 8px;color:var(--green);font-weight:700">Zero (proven)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:24px;transition-delay:.2s">
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <div style="padding:16px 24px;background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--radius);text-align:center">
+        <div class="stat-num" style="font-size:2rem;color:var(--accent)">3.4x</div>
+        <div style="font-size:.78rem;color:var(--text2)">more net recovery vs best alternative</div>
+      </div>
+      <div style="padding:16px 24px;background:var(--green-bg);border:1px solid var(--green-border);border-radius:var(--radius);text-align:center">
+        <div class="stat-num" style="font-size:2rem;color:var(--green)">+$534K</div>
+        <div style="font-size:.78rem;color:var(--text2)">additional net to Amazon per batch</div>
+      </div>
+      <div style="padding:16px 24px;background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:var(--radius);text-align:center">
+        <div class="stat-num" style="font-size:2rem;color:var(--blue)">10.2%</div>
+        <div style="font-size:.78rem;color:var(--text2)">effective fee rate (vs 30% at agencies)</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S13: THE PROPOSAL ==================== -->
+<section id="s13" class="dark-section">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="section-label">The Proposal</div>
+    <div class="stat-num" style="font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:32px">Per-account pricing. Volume rewards. No surprises.</div>
+  </div>
+
+  <div class="card-grid card-grid-3 reveal" style="transition-delay:.15s">
+    <!-- Option A: Per-Account + Success Fee -->
+    <div class="card" style="text-align:left;border:2px solid var(--accent)">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)"></div>
+      <div style="display:inline-block;padding:4px 12px;background:var(--accent);color:#fff;border-radius:12px;font-size:.7rem;font-weight:700;margin-bottom:16px">RECOMMENDED</div>
+      <div style="font-weight:800;font-size:1.1rem;color:var(--accent);margin-bottom:4px">AI Recovery Platform</div>
+      <div style="font-size:.85rem;color:var(--text2);margin-bottom:20px">Per-account fee + success-based upside</div>
+
+      <div style="margin-bottom:16px">
+        <div style="font-size:2rem;font-weight:800;color:var(--text)">$3<span style="font-size:.9rem;font-weight:400;color:var(--text2)">/account</span></div>
+        <div style="font-size:.8rem;color:var(--text3)">placement fee</div>
+      </div>
+      <div style="margin-bottom:16px">
+        <div style="font-size:1.4rem;font-weight:800;color:var(--accent)">+ 10%</div>
+        <div style="font-size:.8rem;color:var(--text3)">success fee on recovered amounts</div>
+      </div>
+      <div style="padding:10px;background:var(--surface);border-radius:var(--radius-sm);font-size:.78rem;color:var(--text2);text-align:left;margin-bottom:8px">
+        <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--surface2)"><span>Up to 500/mo</span><span style="color:var(--text);font-weight:600">$3/account</span></div>
+        <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--surface2)"><span>501&ndash;2,000/mo</span><span style="color:var(--text);font-weight:600">$2/account</span></div>
+        <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--surface2)"><span>2,001&ndash;5,000/mo</span><span style="color:var(--text);font-weight:600">$1/account</span></div>
+        <div style="display:flex;justify-content:space-between;padding:4px 0"><span>5,000+/mo</span><span style="color:var(--accent);font-weight:700">$0/account</span></div>
+      </div>
+      <div style="padding:12px;background:var(--accent-bg);border-radius:var(--radius-sm);border:1px solid var(--accent-border);font-size:.8rem;color:var(--accent);text-align:center">
+        <strong>10.2% effective rate</strong> &middot; vs 30% at agencies
+      </div>
+    </div>
+
+    <!-- Option B: Pure Performance -->
+    <div class="card" style="text-align:left">
+      <div style="font-weight:800;font-size:1.1rem;color:var(--blue);margin-bottom:4px">Pure Performance</div>
+      <div style="font-size:.85rem;color:var(--text2);margin-bottom:20px">No base fee. Pay only when we recover.</div>
+
+      <div style="margin-bottom:16px">
+        <div style="font-size:2rem;font-weight:800;color:var(--text)">$0<span style="font-size:.9rem;font-weight:400;color:var(--text2)">/account</span></div>
+        <div style="font-size:.8rem;color:var(--text3)">zero placement fee</div>
+      </div>
+      <div style="margin-bottom:16px">
+        <div style="font-size:1.4rem;font-weight:800;color:var(--blue)">15%</div>
+        <div style="font-size:.8rem;color:var(--text3)">success fee on recovered amounts</div>
+      </div>
+      <div style="padding:12px;background:var(--blue-bg);border-radius:var(--radius-sm);border:1px solid var(--blue-border);font-size:.8rem;color:var(--blue);text-align:center;margin-top:auto">
+        Zero upfront risk &middot; Still half the cost of agencies
+      </div>
+    </div>
+
+    <!-- Option C: Strategic Partnership -->
+    <div class="card" style="text-align:left">
+      <div style="font-weight:800;font-size:1.1rem;color:var(--green);margin-bottom:4px">Strategic Partnership</div>
+      <div style="font-size:.85rem;color:var(--text2);margin-bottom:20px">Multi-BU commitment. Best rate.</div>
+
+      <div style="margin-bottom:16px">
+        <div style="font-size:2rem;font-weight:800;color:var(--text)">$0<span style="font-size:.9rem;font-weight:400;color:var(--text2)">/account</span></div>
+        <div style="font-size:.8rem;color:var(--text3)">zero placement fee</div>
+      </div>
+      <div style="margin-bottom:16px">
+        <div style="font-size:1.4rem;font-weight:800;color:var(--green)">8%</div>
+        <div style="font-size:.8rem;color:var(--text3)">success fee on recovered amounts</div>
+      </div>
+      <div style="padding:12px;background:var(--green-bg);border-radius:var(--radius-sm);border:1px solid var(--green-border);font-size:.8rem;color:var(--green);text-align:center;margin-top:auto">
+        2,000+/month &middot; Multi-BU &middot; 12-month commitment
+      </div>
+    </div>
+  </div>
+
+  <!-- A2Z Guarantee -->
+  <div class="reveal" style="margin-top:32px;transition-delay:.25s">
+    <div class="card" style="max-width:700px;margin:0 auto;text-align:center;padding:32px;border:2px solid var(--accent)">
+      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:3px;color:var(--accent);font-weight:800;margin-bottom:12px">The A2Z Recovery Guarantee</div>
+      <div style="font-size:1.3rem;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:16px">If we don't outperform your current solution<br>on any batch, you pay nothing.</div>
+      <div style="font-size:.88rem;color:var(--text2);line-height:1.6;max-width:540px;margin:0 auto">
+        Not a specific recovery percentage. A guarantee that Respaid beats whatever you're doing today. We're staking our revenue on outperforming your status quo.
+      </div>
+      <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <div class="badge" style="font-size:.78rem">Measured per batch</div>
+        <div class="badge-green badge" style="font-size:.78rem">60-day measurement window</div>
+        <div class="badge" style="font-size:.78rem">Benchmarked against your current recovery</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick ROI at 500 accounts -->
+  <div class="reveal" style="margin-top:24px;transition-delay:.35s">
+    <div class="card" style="max-width:700px;margin:0 auto;text-align:left;padding:24px 32px">
+      <div style="font-weight:700;font-size:.9rem;color:var(--accent);margin-bottom:12px">Quick math: 500 accounts/month at $4,200 avg</div>
+      <div class="sim-row">
+        <span style="color:var(--text2)">Placement fee (500 x $3)</span>
+        <span style="font-weight:600;color:var(--text)">$1,500/month</span>
+      </div>
+      <div class="sim-row">
+        <span style="color:var(--text2)">Expected recovery (40% conservative)</span>
+        <span style="font-weight:700;color:var(--accent)">$840,000</span>
+      </div>
+      <div class="sim-row">
+        <span style="color:var(--text2)">Success fee (10%)</span>
+        <span style="font-weight:600;color:var(--text)">$84,000</span>
+      </div>
+      <div class="sim-row">
+        <span style="color:var(--text2)">Total Respaid cost</span>
+        <span style="font-weight:600;color:var(--text)">$85,500</span>
+      </div>
+      <div class="sim-row" style="border-bottom:none;padding-top:12px;border-top:2px solid var(--accent-border)">
+        <span style="color:var(--text);font-weight:700;font-size:1rem">Net to Amazon</span>
+        <span style="font-weight:800;color:var(--accent);font-size:1.2rem">$754,500</span>
+      </div>
+      <div style="margin-top:12px;font-size:.82rem;color:var(--text3);text-align:center">Effective rate: 10.2% of recovered &middot; vs 30% at agencies &middot; Annualized: $6.4M more in Amazon's pocket</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== S14: FOOTER / CTA ==================== -->
+<section id="s14" class="dark-section">
+<div class="container" style="text-align:center">
+  <div class="reveal">
+    <div class="stat-num" style="font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:16px">Day 1 starts here.</div>
+    <div class="stat-sub" style="margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto">50% recovery on Day-180 accounts with no invoices, no tracking, no integration. Phase 2 changes everything.</div>
+  </div>
+
+  <div class="card-grid card-grid-3 reveal" style="margin-bottom:48px;transition-delay:.15s">
+    <div class="card" style="text-align:center;padding:20px">
+      <div class="stat-num" style="font-size:1.4rem;color:var(--accent)">50.4%</div>
+      <div class="stat-label">recovery rate (proven)</div>
+    </div>
+    <div class="card" style="text-align:center;padding:20px">
+      <div class="stat-num" style="font-size:1.4rem;color:var(--accent)">22 seconds</div>
+      <div class="stat-label">AI dispute resolution</div>
+    </div>
+    <div class="card" style="text-align:center;padding:20px">
+      <div class="stat-num" style="font-size:1.4rem;color:var(--green)">0 complaints</div>
+      <div class="stat-label">across all channels</div>
+    </div>
+  </div>
+
+  <div class="reveal" style="transition-delay:.25s">
+    <a href="mailto:j@respaid.com?subject=Amazon%20x%20Respaid%20-%20Phase%202" class="cta-btn">
+      Let's Start Phase 2
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <div style="color:var(--text3);font-size:.85rem;margin-top:16px">j@respaid.com &middot; Respaid (YC S23)</div>
+  </div>
+
+  <div style="margin-top:80px;color:var(--text3);font-size:.75rem">
+    Amazon x Respaid &middot; Recovery Intelligence Report &middot; Confidential
+  </div>
+</div>
+</section>
+
+<script>
+// Password Gate
+(function(){
+  if(sessionStorage.getItem('amz-auth')==='true'){
+    document.getElementById('gate').classList.add('hidden');
+    return;
+  }
+  var inp=document.getElementById('gate-pw');
+  var err=document.getElementById('gate-err');
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){
+      var v=inp.value.trim().toLowerCase();
+      if(v==='amazon2026'){
+        sessionStorage.setItem('amz-auth','true');
+        document.getElementById('gate').classList.add('hidden');
+      } else {
+        err.textContent='Incorrect password';
+        inp.value='';
+      }
+    }
+  });
+})();
+
+// Nav Dots
+(function(){
+  var sections=document.querySelectorAll('section');
+  var nav=document.getElementById('navDots');
+  sections.forEach(function(s,i){
+    var a=document.createElement('a');
+    a.href='#'+s.id;
+    a.title='Section '+(i+1);
+    nav.appendChild(a);
+  });
+  var dots=nav.querySelectorAll('a');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        var idx=Array.from(sections).indexOf(en.target);
+        dots.forEach(function(d,j){d.classList.toggle('active',j===idx)});
+      }
+    });
+  },{threshold:.4});
+  sections.forEach(function(s){io.observe(s)});
+})();
+
+// Reveal on scroll
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        en.target.classList.add('visible');
+        io.unobserve(en.target);
+      }
+    });
+  },{threshold:.15});
+  els.forEach(function(el){io.observe(el)});
+})();
+
+// Animated counters
+(function(){
+  function easeOutQuart(t){return 1-Math.pow(1-t,4)}
+  function formatNum(n,sep){
+    if(!sep) return n.toString();
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  }
+  var counters=document.querySelectorAll('.counter');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var el=en.target;
+      io.unobserve(el);
+      var target=parseFloat(el.dataset.target);
+      var prefix=el.dataset.prefix||'';
+      var suffix=el.dataset.suffix||'';
+      var decimals=parseInt(el.dataset.decimals)||0;
+      var sep=el.dataset.separator==='true';
+      var dur=1800;
+      var start=performance.now();
+      function tick(now){
+        var t=Math.min((now-start)/dur,1);
+        var v=easeOutQuart(t)*target;
+        if(decimals>0){
+          el.textContent=prefix+v.toFixed(decimals)+suffix;
+        } else {
+          el.textContent=prefix+formatNum(Math.round(v),sep)+suffix;
+        }
+        if(t<1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  },{threshold:.3});
+  counters.forEach(function(c){io.observe(c)});
+})();
+
+// Animated bars
+(function(){
+  var bars=document.querySelectorAll('.animated-bar');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        en.target.style.width=en.target.dataset.width+'%';
+        io.unobserve(en.target);
+      }
+    });
+  },{threshold:.3});
+  bars.forEach(function(b){io.observe(b)});
+})();
+
+// ROI Simulator (4-way comparison)
+(function(){
+  var acctInput=document.getElementById('simAccounts');
+  var avgInput=document.getElementById('simAvgValue');
+  var ageSelect=document.getElementById('simAge');
+
+  function fmt(n){
+    if(Math.abs(n)>=1000000) return '$'+(Math.round(n/100000)/10).toLocaleString()+'M';
+    if(Math.abs(n)>=1000) return '$'+Math.round(n/1000).toLocaleString()+'K';
+    return '$'+Math.round(n).toLocaleString();
+  }
+  function fmtFull(n){return '$'+Math.round(n).toLocaleString()}
+
+  // Provider profiles (research-backed: industry data from BLS, Glassdoor, SEC filings, Kaplan Group)
+  var providers={
+    respaid:{name:'Respaid AI',color:'var(--accent)',recovery:0.50,successFee:0.10,speed:'20 days',headcount:0},
+    agency:{name:'Traditional Agency',color:'var(--text3)',recovery:0.15,successFee:0.30,speed:'60-120 days',headcount:0},
+    manila:{name:'Manila BPO',color:'var(--text3)',recovery:0.08,successFee:0,speed:'3-6 months',headcount:2100},
+    inhouse:{name:'In-House Team',color:'var(--text3)',recovery:0.10,successFee:0,speed:'Ongoing',headcount:5500}
+  };
+
+  // Per-account placement fee with volume tiers
+  function getPlacementFee(accounts){
+    if(accounts>=5000) return 0;
+    if(accounts>=2001) return 1;
+    if(accounts>=501) return 2;
+    return 3;
+  }
+
+  function calc(){
+    var accounts=parseInt(acctInput.value)||500;
+    var avg=parseInt(avgInput.value)||4200;
+    var age=parseInt(ageSelect.value)||180;
+    var placement=accounts*avg;
+
+    // Adjust recovery rates by age
+    var ageMult=age<=31?1.4:age<=90?1.15:1;
+
+    var results={};
+    ['respaid','agency','manila','inhouse'].forEach(function(key){
+      var p=providers[key];
+      var rate=Math.min(p.recovery*ageMult,0.85);
+      var recovered=placement*rate;
+      var cost;
+      if(key==='respaid'){
+        cost=(getPlacementFee(accounts)*accounts)+(recovered*p.successFee);
+      } else if(key==='agency'){
+        cost=recovered*p.successFee;
+      } else if(key==='manila'){
+        cost=Math.ceil(accounts/50)*p.headcount;
+      } else {
+        cost=Math.ceil(accounts/100)*p.headcount;
+      }
+      var net=recovered-cost;
+      results[key]={rate:rate,recovered:recovered,cost:cost,net:net,speed:p.speed};
+    });
+
+    // Build table
+    var body=document.getElementById('simBody');
+    var rows=[
+      {label:'Recovery rate',vals:['respaid','agency','manila','inhouse'].map(function(k){
+        return (results[k].rate*100).toFixed(1)+'%';
+      })},
+      {label:'Monthly recovered',vals:['respaid','agency','manila','inhouse'].map(function(k){
+        return fmt(results[k].recovered);
+      })},
+      {label:'Monthly cost',vals:['respaid','agency','manila','inhouse'].map(function(k){
+        return fmt(results[k].cost);
+      })},
+      {label:'Net to Amazon',vals:['respaid','agency','manila','inhouse'].map(function(k){
+        return fmt(results[k].net);
+      })},
+      {label:'Time to results',vals:[results.respaid.speed,results.agency.speed,results.manila.speed,results.inhouse.speed]},
+      {label:'Placement fee',vals:['$'+getPlacementFee(accounts)+'/acct','$0','$0','$0']},
+      {label:'Headcount needed',vals:['0','0',Math.ceil(accounts/50)+' agents ($2.1K/mo ea)',Math.ceil(accounts/100)+' FTEs ($5.5K/mo ea)']}
+    ];
+
+    body.innerHTML='';
+    rows.forEach(function(row,ri){
+      var tr=document.createElement('tr');
+      tr.style.borderBottom='1px solid var(--surface2)';
+      tr.innerHTML='<td style="padding:10px 12px;color:var(--text2);font-weight:500">'+row.label+'</td>';
+      row.vals.forEach(function(v,ci){
+        var isRespaid=ci===0;
+        var isNetRow=ri===3;
+        var style='text-align:center;padding:10px 12px;';
+        if(isRespaid) style+='background:var(--accent-bg);font-weight:700;color:var(--accent);';
+        else if(isNetRow) style+='color:var(--text);';
+        else style+='color:var(--text2);';
+        tr.innerHTML+='<td style="'+style+'">'+v+'</td>';
+      });
+      body.appendChild(tr);
+    });
+
+    // Summary cards
+    var summary=document.getElementById('simSummary');
+    var bestAlt=Math.max(results.agency.net,results.manila.net,results.inhouse.net);
+    var advantage=(results.respaid.net-bestAlt)*12;
+
+    summary.innerHTML=['respaid','agency','manila','inhouse'].map(function(key){
+      var r=results[key];
+      var p=providers[key];
+      var isR=key==='respaid';
+      var bg=isR?'var(--accent-bg)':'var(--surface)';
+      var border=isR?'var(--accent-border)':'var(--surface3)';
+      var col=isR?'var(--accent)':'var(--text)';
+      return '<div style="padding:14px;background:'+bg+';border:1px solid '+border+';border-radius:var(--radius-sm);text-align:center">'+
+        '<div style="font-size:.65rem;text-transform:uppercase;letter-spacing:1px;color:'+col+';font-weight:700;margin-bottom:4px">'+p.name+'</div>'+
+        '<div style="font-size:1.2rem;font-weight:800;color:'+col+'">'+fmt(r.net)+'</div>'+
+        '<div style="font-size:.7rem;color:var(--text3)">net/month</div>'+
+      '</div>';
+    }).join('');
+
+    document.getElementById('simAdvantage').textContent=fmt(advantage);
+    document.getElementById('simAdvantageLabel').textContent=
+      advantage>0?'more net recovery per year vs best alternative':'';
+  }
+
+  acctInput.addEventListener('input',calc);
+  avgInput.addEventListener('input',calc);
+  ageSelect.addEventListener('change',calc);
+  calc();
+})();
+</script>
+</body>
+</html>
